@@ -1,36 +1,25 @@
-const app = {
-    title: 'Visibility',
-    details: 'Here are the details'
-};
-let myVisibleValue = null;
+let visibility = false;
 
-const buttonValue = {
-    visible: 'Show Details',
-    hide: 'Hide Details'
-};
-
-const visibility = (e) => {
-    e.preventDefault();
-    if(myVisibleValue == null){
-        myVisibleValue = app.details;
-    } else {
-        myVisibleValue = null;
-    }
+const toggleVisibility = () => {
+    visibility = !visibility;
     render();
-}
-
-
-const appRoot = document.getElementById('app');
-
+};
 const render = () => {
-    const template = (
+    const jsx = (
         <div>
-        <h1>{app.title}</h1>
-        <button onClick={visibility}>{myVisibleValue == null ? buttonValue.visible : buttonValue.hide}</button>
-        <h1 name="visibleValue">{myVisibleValue}</h1>
+            <h1>Visibility Toggle</h1>
+            <button onClick={toggleVisibility}>
+            {visibility ? 'Hide Details' : 'Show details'}
+            </button>
+            {
+                visibility && (
+                    <div>
+                    <p>Hey these are the details</p>
+                    </div>
+                )
+            }
         </div>
-    )
-    ReactDOM.render(template, appRoot);
-}
+    );
+    ReactDOM.render(jsx, document.getElementById('app'));
+};
 render();
-
