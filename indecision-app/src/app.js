@@ -18,11 +18,21 @@ var user = {
     Age: 32,
     Location: 'Kitchener'
 }
+
+var userLocation = (location) => {
+    if(location){
+        return <p>Location: {location}</p>;
+    } else {
+        return 'Unknown';
+    }
+    
+}
+
 var templateTwo = (
     <div>
-        <h1>{user.username.toUpperCase()}</h1>
-        <p>Age: {user.Age}</p>
-        <p>Location: {user.Location}</p>
+        <h1>{user.username ? user.username.toUpperCase() : 'Anonymous'}</h1>
+        <p>Age: {user.Age >= 18 ? user.Age : 'Minor'}</p>
+        {userLocation(user.Location)}
     </div>
 );
 var appRoot = document.getElementById("app");

@@ -42,26 +42,35 @@ var user = {
     Age: 32,
     Location: 'Kitchener'
 };
+
+var userLocation = function userLocation(location) {
+    if (location) {
+        return React.createElement(
+            'p',
+            null,
+            'Location: ',
+            location
+        );
+    } else {
+        return 'Unknown';
+    }
+};
+
 var templateTwo = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        user.username.toUpperCase()
+        user.username ? user.username.toUpperCase() : 'Anonymous'
     ),
     React.createElement(
         'p',
         null,
         'Age: ',
-        user.Age
+        user.Age >= 18 ? user.Age : 'Minor'
     ),
-    React.createElement(
-        'p',
-        null,
-        'Location: ',
-        user.Location
-    )
+    userLocation(user.Location)
 );
 var appRoot = document.getElementById("app");
 
